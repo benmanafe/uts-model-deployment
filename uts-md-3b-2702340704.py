@@ -74,7 +74,7 @@ def main():
     
     room_type_reserved_data = sorted(data['room_type_reserved'].unique())
     room_type_reserved  = st.selectbox(
-        'Is a care parking space required?',
+        'What room type would you like to reserve?',
         room_type_reserved_data
     )
     
