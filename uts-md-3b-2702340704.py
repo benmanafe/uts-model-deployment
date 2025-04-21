@@ -185,7 +185,7 @@ def scale_data(data, features):
     return new_numerical_scaled_df
     
 def encode_data(data, features, oe, ohe):
-    with open('D:\\BINUS\\MD\\UTS_MD_2702340704\\encoder.pkl', 'rb') as file:
+    with open('encoder.pkl', 'rb') as file:
         loaded_encoder = pkl.load(file)
     
     new_categorical_encoded = loaded_encoder.transform(data[features])
