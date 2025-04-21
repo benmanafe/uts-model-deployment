@@ -12,7 +12,7 @@ def main():
     st.info('This app will predict a customer\'s booking status (Canceled/Not Canceled)!')
     
     with st.expander('**Data**'):
-        data = pd.read_csv('D:\\BINUS\\MD\\UTS_MD_2702340704\\Dataset_B_hotel.csv')
+        data = pd.read_csv('Dataset_B_hotel.csv')
         data = data.dropna()
         st.write('This is a raw data')
         st.dataframe(data)
@@ -176,7 +176,7 @@ def main():
 
 
 def scale_data(data, features):
-    with open('D:\\BINUS\\MD\\UTS_MD_2702340704\\scaler.pkl', 'rb') as file:
+    with open('scaler.pkl', 'rb') as file:
         loaded_scaler = pkl.load(file)
     
     new_numerical_scaled = loaded_scaler.transform(data[features])
@@ -227,10 +227,10 @@ def preprocess_data(data):
     return processed_data
 
 def make_predictions(data):
-    with open('D:\\BINUS\\MD\\UTS_MD_2702340704\\xgb_model.pkl', 'rb') as file:
+    with open('xgb_model.pkl', 'rb') as file:
         loaded_model = pkl.load(file)
 
-    with open('D:\\BINUS\\MD\\UTS_MD_2702340704\\target_vals.pkl', 'rb') as file:
+    with open('target_vals.pkl', 'rb') as file:
         loaded_target_vals = pkl.load(file)
     
     processed_data = preprocess_data(data=data)
@@ -241,9 +241,9 @@ def make_predictions(data):
     st.dataframe(pd.DataFrame(prediction_probs, columns=inverse_target_vals.values()))
     
     if predictions[0] == 0:
-        st.success(f"The predicted output is: {predictions[0]} **[{inverse_target_vals[predictions[0]]}]**")
+        st.success(f'The predicted output is: {predictions[0]} **[{inverse_target_vals[predictions[0]]}]**')
     else:
-        st.error(f"The predicted output is: {predictions[0]} **[{inverse_target_vals[predictions[0]]}]**")
+        st.error(f'The predicted output is: {predictions[0]} **[{inverse_target_vals[predictions[0]]}]**')
     
 if __name__ == '__main__':
     main()
